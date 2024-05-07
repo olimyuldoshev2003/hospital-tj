@@ -14,10 +14,10 @@ const Hospitals = () => {
     setLoading(true);
     try {
       const { data } = await axios.get(
-        `https://hospitaltj.pythonanywhere.com/api/v1/hospitals/?search=${search}`
+        `https://myhospitalproject.pythonanywhere.com/api/v1/hospitals/?search=${search}`
       );
 
-      setHospitals(data);
+      setHospitals(data.results);
     } catch (error) {
       console.error(error);
     } finally {
@@ -75,7 +75,7 @@ const Hospitals = () => {
           {hospitals.length === 0 && loading === false ? (
             <div>
               <h1 className="text-[20px] font-[500] text-[#2e2e2e]">
-                В этой категории нет никаких клиники
+                Клиники не найдены
               </h1>
             </div>
           ) : null}

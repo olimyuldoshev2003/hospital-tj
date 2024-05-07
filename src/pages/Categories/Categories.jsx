@@ -10,25 +10,24 @@ const Categories = () => {
   const [data, setData] = useState([]);
   const [categories, setCategories] = useState([]);
   const [search, setSearch] = useState("");
-  const [loading, setLoading] = useState(false)
-
+  const [loading, setLoading] = useState(false);
 
   async function getCategories() {
-    setLoading(true)
+    setLoading(true);
     try {
       const { data } = await axios.get(
         // search === ""
         // ?
-        `https://hospitaltj.pythonanywhere.com/api/v1/categories/?search=${search}`
+        `https://myhospitalproject.pythonanywhere.com/api/v1/categories/?search=${search}`
         // :
-        // `https://hospitaltj.pythonanywhere.com/api/v1/categories/?search=${search}&?page=${page}`
+        // `https://myhospitalproject.pythonanywhere.com/api/v1/categories/?search=${search}&?page=${page}`
       );
 
-      setCategories(data);
+      setCategories(data.results);
     } catch (error) {
       console.error(error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }
 
@@ -36,7 +35,7 @@ const Categories = () => {
   // async function getCategoriesCount() {
   //   try {
   //     const { data } = await axios.get(
-  //       "https://hospitaltj.pythonanywhere.com/api/v1/categories/"
+  //       "https://myhospitalproject.pythonanywhere.com/api/v1/categories/"
   //     );
   //     setCategoriesCount(Math.ceil(data.results.length / limit));
   //   } catch (error) {
@@ -68,17 +67,15 @@ const Categories = () => {
         </section>
         <div className="categories grid xl:grid-cols-[300px_300px_300px_300px] lg:grid-cols-[300px_300px_300px] md:grid-cols-[300px_300px] sm:grid-cols-[300px] justify-items-center place-content-center gap-3 max-w-[1440px] m-[0_auto]">
           {loading === false ? (
-            categories
-              
-              .map((item) => {
-                return (
-                  <Link to={`/categories/${item.slug}`}>
-                    <div className="category w-[300px] h-[100px] bg-[#e1e0e0] hover:bg-[#ecebeb] rounded-[6px] pt-[10px] pl-[10px] cursor-pointer">
-                      <h1 className="text-[19px]">{item.title}</h1>
-                    </div>
-                  </Link>
-                );
-              })
+            categories.map((item) => {
+              return (
+                <Link to={`/categories/${item.slug}`}>
+                  <div className="category w-[300px] h-[100px] bg-[#e1e0e0] hover:bg-[#ecebeb] rounded-[6px] pt-[10px] pl-[10px] cursor-pointer">
+                    <h1 className="text-[19px]">{item.title}</h1>
+                  </div>
+                </Link>
+              );
+            })
           ) : (
             <div>
               <h1>Загрузка...</h1>

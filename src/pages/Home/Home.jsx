@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 //For images
-import imgHospital from "../../assets/hospital.jpg";
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -15,10 +14,10 @@ const Home = () => {
     setLoadingHospitals(true);
     try {
       const { data } = await axios.get(
-        "https://hospitaltj.pythonanywhere.com/api/v1/hospitals/?is_on_main=True"
+        "https://myhospitalproject.pythonanywhere.com/api/v1/hospitals/?is_on_main=True"
       );
 
-      setHospitals(data);
+      setHospitals(data.results);
     } catch (error) {
       console.error(error);
     } finally {
@@ -30,10 +29,10 @@ const Home = () => {
     setLoadingCategories(true);
     try {
       const { data } = await axios.get(
-        "https://hospitaltj.pythonanywhere.com/api/v1/categories/"
+        "https://myhospitalproject.pythonanywhere.com/api/v1/categories/"
       );
 
-      setCategories(data);
+      setCategories(data.results);
     } catch (error) {
       console.error(error);
     } finally {
@@ -91,17 +90,33 @@ const Home = () => {
           )}
 
           <div className="categories grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 gap-3">
-            {loadingCategories === false ? categories.slice(0, 6).map((item) => {
-              return (
-                <Link to={`/categories/${item.slug}`}>
-                  <div className="category w-[300px] xl:h-full sm:h-[100px] bg-[#e1e0e0] hover:bg-[#ecebeb] rounded-[6px] pt-[10px] pl-[10px] cursor-pointer">
-                    <h1 className="text-[19px]">{item.title}</h1>
-                  </div>
-                </Link>
-              );
-            }) : <div>
-            <h1>Загрузка...</h1>
-            </div>}
+            {loadingCategories === false ? (
+              categories.slice(0, 6).map((item) => {
+                return (
+                  <Link to={`/categories/${item.slug}`}>
+                    <div className="category w-[300px] xl:h-full sm:h-[100px] bg-[#e1e0e0] hover:bg-[#ecebeb] rounded-[6px] pt-[10px] pl-[10px] cursor-pointer">
+                      <h1 className="text-[19px]">{item.title}</h1>
+                    </div>
+                  </Link>
+                );
+              })
+            ) : (
+              <div>
+                <h1>Загрузка...</h1>
+              </div>
+            )}
+            {hospitals.length === 0 && loadingHospitals === false && (
+              <div>
+                <h1 className="text-[20px] font-[500] text-[#2e2e2e]">
+                  Клиники не найдены
+                </h1>
+              </div>
+            )}
+            {categories.length === 0 && loadingCategories === false && (
+              <div className="text-[20px] font-[500] text-[#2e2e2e]">
+                <h1>Категории не найдены</h1>
+              </div>
+            )}
           </div>
         </section>
       </div>
