@@ -82,8 +82,8 @@ const Hospital = () => {
           }}
         >
           <div className="block_s_1 absolute right-[20px] bottom-[20px] flex items-center gap-3">
-            <div className="comments_1 bg-[#1c9c75] w-[180px] p-[10px] rounded-[9px]">
-              <h3 className="text-[#fff] text-[14px] text-center">{comment[0]?.text}</h3>
+            <div className="comments_1 bg-[#1c9c75] w-[150px] p-[10px] rounded-[9px]">
+              <h3 className="text-[#fff] text-[13.4px] text-center">{comment[0]?.text}</h3>
             </div>
             {/* <div className="comments_2">
               <h3 className="text-[#fff] bg-[#1c9c75] w-[120px] p-[10px] rounded-[9px]">
