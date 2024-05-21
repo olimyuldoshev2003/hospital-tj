@@ -1,3 +1,4 @@
+import { Pagination } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
@@ -7,6 +8,9 @@ const Services = () => {
   const [search, setSearch] = useState("");
   const [inpFrom, setInpFrom] = useState("");
   const [inpTo, setInpTo] = useState("");
+
+  //Pagination
+  const [page, setPage] = useState(1)
 
   console.log(inpFrom);
   console.log(inpTo);
@@ -121,6 +125,13 @@ const Services = () => {
               </h1>
             </div>
           ) : null}
+        </div>
+        <div className="for_pagination flex justify-center items-center mt-[30px]">
+          <Pagination
+            page={page}
+            onChange={(_, newPage) => setPage(newPage)}
+            size="small"
+          />
         </div>
       </div>
     </>

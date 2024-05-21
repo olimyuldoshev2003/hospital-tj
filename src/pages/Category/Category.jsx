@@ -56,7 +56,7 @@ const Category = () => {
         <div className="for_h1_and_p max-w-[1440px] m-[0_auto] text-center">
           <h1 className="text-[40px] font-[500]"> Категория - {id}</h1>
           <p className="text-[20px] font-[400]">
-            Найдено {dataHospital.length} клиник, {dataService.length} сервисов
+            Найдено {dataHospital.count} клиник, {dataService.count} сервисов
           </p>
         </div>
         <section className="section_1 mt-[30px] px-[30px] sm:justify-center flex md:justify-start flex-wrap gap-6 max-w-[1440px] m-[0_auto]">

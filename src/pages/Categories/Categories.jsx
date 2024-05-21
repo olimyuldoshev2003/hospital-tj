@@ -49,7 +49,7 @@ const Categories = () => {
   useEffect(() => {
     getCategories();
     // getCategoriesCount();
-  }, [search]);
+  }, [search, page]);
 
   return (
     <>

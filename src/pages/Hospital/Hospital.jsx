@@ -10,6 +10,7 @@ const Hospital = () => {
   const [dataHospital, setDataHospital] = useState([]);
   const [dataService, setDataService] = useState([]);
   const [services, setServices] = useState([]);
+  const [comment, setComment] = useState([]);
   const [loadingServices, setLoadingServices] = useState(false);
   const [hospitals, setHospitals] = useState([]);
   const [loadingHospitals, setLoadingHospitals] = useState(false);
@@ -34,7 +35,7 @@ const Hospital = () => {
       const { data } = await axios.get(
         `https://hospitaltj.pythonanywhere.com/api/v1/hospitals/${id}/comments/`
       );
-      console.log(data.results);
+      setComment(data.results);
     } catch (error) {}
   }
 
@@ -75,14 +76,20 @@ const Hospital = () => {
     <>
       <div className="page_hospital">
         <section
-          className="section_1 bg-no-repeat bg-cover bg-center min-h-[550px]"
+          className="section_1 bg-no-repeat bg-cover bg-center min-h-[550px] relative"
           style={{
             backgroundImage: `url(${hospital.big_image})`,
           }}
         >
-          <div className="block_s_1">
-            <div className="comments_1"></div>
-            <div className="comments_2"></div>
+          <div className="block_s_1 absolute right-[20px] bottom-[20px] flex items-center gap-3">
+            <div className="comments_1 bg-[#1c9c75] w-[180px] p-[10px] rounded-[9px]">
+              <h3 className="text-[#fff] text-[14px] text-center">{comment[0]?.text}</h3>
+            </div>
+            {/* <div className="comments_2">
+              <h3 className="text-[#fff] bg-[#1c9c75] w-[120px] p-[10px] rounded-[9px]">
+                {comment[0].text}
+              </h3>
+            </div> */}
           </div>
         </section>
         <section className="section_2 mt-[30px] max-w-[1440px] m-[0_auto] px-[30px]">
