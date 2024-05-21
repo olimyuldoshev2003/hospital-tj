@@ -12,13 +12,16 @@ const Categories = () => {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
 
+  //Pagination
+  const [page, setPage] = useState(1)
+
   async function getCategories() {
     setLoading(true);
     try {
       const { data } = await axios.get(
         // search === ""
         // ?
-        `https://myhospitalproject.pythonanywhere.com/api/v1/categories/?search=${search}`
+        `https://hospitaltj.pythonanywhere.com/api/v1/categories/?search=${search}`
         // :
         // `https://myhospitalproject.pythonanywhere.com/api/v1/categories/?search=${search}&?page=${page}`
       );
@@ -89,6 +92,9 @@ const Categories = () => {
               </h1>
             </div>
           ) : null}
+        </div>
+        <div className="for_pagination flex justify-center items-center mt-[30px]">
+          <Pagination size="small" page={page} onChange={(_, newPage) => setPage(newPage)}/>
         </div>
       </div>
     </>

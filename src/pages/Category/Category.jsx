@@ -19,7 +19,7 @@ const Category = () => {
     setLoadingHospitals(true);
     try {
       const { data } = await axios.get(
-        `https://myhospitalproject.pythonanywhere.com/api/v1/hospitals/?category=${id}`
+        `https://hospitaltj.pythonanywhere.com/api/v1/hospitals/?category=${id}`
       );
       setHospitals(data.results);
       setDataHospital(data);
@@ -34,7 +34,7 @@ const Category = () => {
     setLoadingServices(true);
     try {
       const { data } = await axios.get(
-        `https://myhospitalproject.pythonanywhere.com/api/v1/services/?hospital=${id}`
+        `https://hospitaltj.pythonanywhere.com/api/v1/services/?hospital=${id}`
       );
       setServices(data.results);
       setDataService(data);

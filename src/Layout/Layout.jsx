@@ -163,8 +163,10 @@ const Layout = () => {
         </header>
 
         <Outlet />
-        <footer className="footer bg-[#e1e0e0] min-h-[80px] max-w-[1440px] m-[0_auto] flex justify-center items-center mt-[10px]">
-          <h1 className="text-[27px] font-[500]">(C) Hospital TJ</h1>
+        <footer className="footer bg-[#e1e0e0] min-h-[80px]  flex justify-center items-center mt-[10px]">
+          <div className="footer_block max-w-[1440px] m-[0_auto]">
+            <h1 className="text-[27px] font-[500]">(C) Hospital TJ</h1>
+          </div>
         </footer>
       </div>
     </>

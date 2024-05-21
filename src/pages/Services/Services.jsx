@@ -16,8 +16,10 @@ const Services = () => {
     try {
       const { data } = await axios.get(
         inpFrom === "" || inpTo === ""
-          ? `https://myhospitalproject.pythonanywhere.com/api/v1/services/?max_price=${inpTo}&min_price=${inpFrom}`
-          : `https://myhospitalproject.pythonanywhere.com/api/v1/services/?search=${search}&max_price=${inpTo}&min_price=${inpFrom}`
+          ?
+          `https://hospitaltj.pythonanywhere.com/api/v1/services/?max_price=${inpTo}&min_price=${inpFrom}`
+          :
+          `https://hospitaltj.pythonanywhere.com/api/v1/services/?search=${search}&max_price=${inpTo}&min_price=${inpFrom}`
       );
       setServices(data.results);
     } catch (error) {

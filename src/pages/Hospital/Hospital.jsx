@@ -18,7 +18,7 @@ const Hospital = () => {
     setLoadingHospitals(true);
     try {
       const { data } = await axios.get(
-        `https://myhospitalproject.pythonanywhere.com/api/v1/hospitals/`
+        `https://hospitaltj.pythonanywhere.com/api/v1/hospitals/`
       );
       setHospitals(data.results);
       setDataHospital(data);
@@ -32,7 +32,7 @@ const Hospital = () => {
   async function getCommentsById() {
     try {
       const { data } = await axios.get(
-        `https://myhospitalproject.pythonanywhere.com/api/v1/hospitals/${id}/comments/`
+        `https://hospitaltj.pythonanywhere.com/api/v1/hospitals/${id}/comments/`
       );
       console.log(data.results);
     } catch (error) {}
@@ -42,7 +42,7 @@ const Hospital = () => {
     setLoadingServices(true);
     try {
       const { data } = await axios.get(
-        `https://myhospitalproject.pythonanywhere.com/api/v1/services/?hospital=${id}`
+        `https://hospitaltj.pythonanywhere.com/api/v1/services/?hospital=${id}`
       );
       setServices(data.results);
     } catch (error) {
@@ -61,10 +61,10 @@ const Hospital = () => {
   async function getHospitalById() {
     try {
       const { data } = await axios.get(
-        `https://myhospitalproject.pythonanywhere.com/api/v1/hospitals/${id}/`
+        `https://hospitaltj.pythonanywhere.com/api/v1/hospitals/${id}/`
       );
 
-      setHospital(data.results);
+      setHospital(data);
     } catch (error) {}
   }
 

@@ -4,17 +4,22 @@ import axios from "axios";
 //For images
 import imgHospital from "../../assets/hospital.jpg";
 import { Link } from "react-router-dom";
+import { Pagination } from "@mui/material";
 
 const Hospitals = () => {
   const [hospitals, setHospitals] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
 
+  //Pagination
+  const [page, setPage] = useState(1)
+  // const [linit, setLimit] = useState(10)
+
   async function getHospitals() {
     setLoading(true);
     try {
       const { data } = await axios.get(
-        `https://myhospitalproject.pythonanywhere.com/api/v1/hospitals/?search=${search}`
+        `https://hospitaltj.pythonanywhere.com/api/v1/hospitals/?search=${search}&page=${page}`
       );
 
       setHospitals(data.results);
@@ -27,7 +32,7 @@ const Hospitals = () => {
 
   useEffect(() => {
     getHospitals();
-  }, [search]);
+  }, [search, page]);
 
   return (
     <>
@@ -79,102 +84,10 @@ const Hospitals = () => {
               </h1>
             </div>
           ) : null}
-          {/* <div
-            className="hospitals relative w-[max-content]
-          cursor-pointer"
-          >
-            <img
-              src={imgHospital}
-              className="w-[300px] rounded-[10px]"
-              alt=""
-            />
-            <h1 className="absolute top-[15px] text-[#fff] left-[17px] text-[22px] font-[500]">
-              Hospitals
-            </h1>
-            <p className="absolute top-[50px] text-[#fff] left-[17px] text-[14px] font-[500] ">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Provident reprehenderit, quidem hic optio assumenda nobis. Saepe
-              neque mollitia necessitatibus ex voluptas consequatur a? Sed
-              cupiditate ad ullam dolorem rem obcaecati?
-            </p>
-          </div>
-          <div
-            className="hospitals relative w-[max-content]
-          cursor-pointer"
-          >
-            <img
-              src={imgHospital}
-              className="w-[300px] rounded-[10px]"
-              alt=""
-            />
-            <h1 className="absolute top-[15px] text-[#fff] left-[17px] text-[22px] font-[500]">
-              Hospitals
-            </h1>
-            <p className="absolute top-[50px] text-[#fff] left-[17px] text-[14px] font-[500] ">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Provident reprehenderit, quidem hic optio assumenda nobis. Saepe
-              neque mollitia necessitatibus ex voluptas consequatur a? Sed
-              cupiditate ad ullam dolorem rem obcaecati?
-            </p>
-          </div>
-          <div
-            className="hospitals relative w-[max-content]
-          cursor-pointer"
-          >
-            <img
-              src={imgHospital}
-              className="w-[300px] rounded-[10px]"
-              alt=""
-            />
-            <h1 className="absolute top-[15px] text-[#fff] left-[17px] text-[22px] font-[500]">
-              Hospitals
-            </h1>
-            <p className="absolute top-[50px] text-[#fff] left-[17px] text-[14px] font-[500] ">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Provident reprehenderit, quidem hic optio assumenda nobis. Saepe
-              neque mollitia necessitatibus ex voluptas consequatur a? Sed
-              cupiditate ad ullam dolorem rem obcaecati?
-            </p>
-          </div>
-          <div
-            className="hospitals relative w-[max-content]
-          cursor-pointer"
-          >
-            <img
-              src={imgHospital}
-              className="w-[300px] rounded-[10px]"
-              alt=""
-            />
-            <h1 className="absolute top-[15px] text-[#fff] left-[17px] text-[22px] font-[500]">
-              Hospitals
-            </h1>
-            <p className="absolute top-[50px] text-[#fff] left-[17px] text-[14px] font-[500] ">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Provident reprehenderit, quidem hic optio assumenda nobis. Saepe
-              neque mollitia necessitatibus ex voluptas consequatur a? Sed
-              cupiditate ad ullam dolorem rem obcaecati?
-            </p>
-          </div>
-          <div
-            className="hospitals relative w-[max-content]
-          cursor-pointer"
-          >
-            <img
-              src={imgHospital}
-              className="w-[300px] rounded-[10px]"
-              alt=""
-            />
-            <h1 className="absolute top-[15px] text-[#fff] left-[17px] text-[22px] font-[500]">
-              Hospitals
-            </h1>
-            <p className="absolute top-[50px] text-[#fff] left-[17px] text-[14px] font-[500] ">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Provident reprehenderit, quidem hic optio assumenda nobis. Saepe
-              neque mollitia necessitatibus ex voluptas consequatur a? Sed
-              cupiditate ad ullam dolorem rem obcaecati?
-            </p>
-          </div> */}
         </section>
+        <div className="for_pagination flex justify-center items-center mt-[30px]">
+          <Pagination page={page} onChange={(_, newPage)=> setPage(newPage)} size="small" />
+        </div>
       </div>
     </>
   );
